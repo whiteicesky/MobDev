@@ -1,5 +1,6 @@
 package com.example.fashionshop;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
@@ -33,6 +34,8 @@ public class CartFragment extends Fragment {
 
         checkoutButton.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Оформление заказа...", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getContext(), CheckoutActivity.class);
+            startActivity(intent);
         });
 
         return view;

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "596094352467",
+    "project_id": "fashionshop-126bc",
+    "storage_bucket": "fashionshop-126bc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596094352467:android:6b0fae43c2870fba5b1aa6",
+        "android_client_info": {
+          "package_name": "com.example.fashionshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSil-MyK1ESplc1R7uMngQzybmNP2WsLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -34,11 +34,13 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         Product product = productList.get(position);
 
         holder.name.setText(product.getName());
+        holder.brand.setText("Бренд: " + product.getBrand()); // ← добавили
         holder.price.setText(product.getPrice() + " ₽");
         Glide.with(holder.itemView.getContext()).load(product.getImageUrl()).into(holder.image);
 
         holder.btnRemove.setOnClickListener(v -> removeClickListener.onRemoveClick(product));
     }
+
 
     @Override
     public int getItemCount() {
@@ -46,16 +48,18 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     }
 
     public static class FavoriteViewHolder extends RecyclerView.ViewHolder {
-        TextView name, price;
+        TextView name, brand, price;
         ImageView image;
         Button btnRemove;
 
         public FavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.textViewFavName);
+            brand = itemView.findViewById(R.id.textViewFavBrand); // ← добавили
             price = itemView.findViewById(R.id.textViewFavPrice);
             image = itemView.findViewById(R.id.imageViewFav);
             btnRemove = itemView.findViewById(R.id.btnRemoveFavorite);
         }
     }
+
 }

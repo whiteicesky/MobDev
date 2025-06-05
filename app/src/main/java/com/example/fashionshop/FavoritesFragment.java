@@ -11,7 +11,7 @@ import java.util.*;
 public class FavoritesFragment extends Fragment {
     private RecyclerView recyclerView;
     private TextView emptyTextView;
-    private ProductAdapter adapter;
+    private FavoriteAdapter adapter; // ← исправлено
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -23,12 +23,23 @@ public class FavoritesFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         List<Product> favorites = FavoritesManager.getInstance().getFavorites();
-        adapter = new ProductAdapter(favorites);
+        adapter = new FavoriteAdapter(favorites, product -> {
+            FavoritesManager.getInstance().removeFromFavorites(product);
+            adapter.notifyDataSetChanged();
+            updateUI();
+        });
         recyclerView.setAdapter(adapter);
 
         updateUI();
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+        updateUI();
     }
 
     private void updateUI() {

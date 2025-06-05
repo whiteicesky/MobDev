@@ -66,8 +66,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
 
         btnFavorite.setOnClickListener(v -> {
-            Toast.makeText(this, "Добавлено в избранное", Toast.LENGTH_SHORT).show();
-            // Аналогично, можно сохранять в локальный список
+                Product product = new Product(name, brand, category, price, description, imageUrl);
+                FavoritesManager.getInstance().addToFavorites(product);
+                Toast.makeText(this, "Добавлено в избранное ", Toast.LENGTH_SHORT).show();
         });
     }
 }

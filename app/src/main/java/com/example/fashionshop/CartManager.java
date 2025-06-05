@@ -15,14 +15,15 @@ public class CartManager {
         return instance;
     }
 
-    public void addToCart(Product product) {
+    public void addToCart(Product product, String size) {
         for (CartItem item : cartItems) {
-            if (item.getProduct().equals(product)) {
+            if (item.getProduct().getName().equals(product.getName()) &&
+                    item.getSize().equals(size)) {
                 item.setQuantity(item.getQuantity() + 1);
                 return;
             }
         }
-        cartItems.add(new CartItem(product, 1));
+        cartItems.add(new CartItem(product, size));
     }
 
     public void removeFromCart(Product product) {

@@ -45,8 +45,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             holder.addToFavBtn.setVisibility(View.VISIBLE);
 
             holder.addToCartBtn.setOnClickListener(v -> {
-                CartManager.getInstance().addToCart(product);
-                Toast.makeText(context, "Добавлено в корзину", Toast.LENGTH_SHORT).show();
+                String[] sizes = {"XS", "S", "M", "L", "XL"};
+                new android.app.AlertDialog.Builder(context)
+                        .setTitle("Выберите размер")
+                        .setItems(sizes, (dialog, which) -> {
+                            String selectedSize = sizes[which];
+                            CartManager.getInstance().addToCart(product, selectedSize);
+                            Toast.makeText(context, "Добавлено в корзину (" + selectedSize + ")", Toast.LENGTH_SHORT).show();
+                        })
+                        .show();
             });
 
             holder.addToFavBtn.setOnClickListener(v -> {

@@ -3,10 +3,12 @@ package com.example.fashionshop;
 public class CartItem {
     private Product product;
     private int quantity;
+    private String size; // ⬅️ Добавляем поле размера
 
-    public CartItem(Product product, int quantity) {
+    public CartItem(Product product, String size) {
         this.product = product;
-        this.quantity = quantity;
+        this.size = size;
+        this.quantity = 1;
     }
 
     public Product getProduct() {
@@ -15,6 +17,10 @@ public class CartItem {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public String getSize() {
+        return size;
     }
 
     public void setQuantity(int quantity) {

@@ -30,26 +30,26 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         Product product = item.getProduct();
 
         holder.name.setText(product.getName());
-        holder.quantity.setText(String.valueOf(item.getQuantity()));
+        holder.quantity.setText(String.valueOf("Количество: "+item.getQuantity()));
         holder.price.setText(product.getPrice() + " ₽");
         Glide.with(holder.itemView.getContext()).load(product.getImageUrl()).into(holder.image);
 
-        holder.increaseBtn.setOnClickListener(v -> {
-            item.setQuantity(item.getQuantity() + 1);
-            notifyItemChanged(position);
-            onCartUpdated.run();
-        });
-
-        holder.decreaseBtn.setOnClickListener(v -> {
-            if (item.getQuantity() > 1) {
-                item.setQuantity(item.getQuantity() - 1);
-            } else {
-                cartItems.remove(position);
-                notifyItemRemoved(position);
-            }
-            notifyItemChanged(position);
-            onCartUpdated.run();
-        });
+//        holder.increaseBtn.setOnClickListener(v -> {
+//            item.setQuantity(item.getQuantity() + 1);
+//            notifyItemChanged(position);
+//            onCartUpdated.run();
+//        });
+//
+//        holder.decreaseBtn.setOnClickListener(v -> {
+//            if (item.getQuantity() > 1) {
+//                item.setQuantity(item.getQuantity() - 1);
+//            } else {
+//                cartItems.remove(position);
+//                notifyItemRemoved(position);
+//            }
+//            notifyItemChanged(position);
+//            onCartUpdated.run();
+//        });
 
         holder.removeBtn.setOnClickListener(v -> {
             cartItems.remove(position);
@@ -74,8 +74,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             name = itemView.findViewById(R.id.textViewCartProductName);
             price = itemView.findViewById(R.id.textViewCartPrice);
             quantity = itemView.findViewById(R.id.textViewCartQuantity);
-            increaseBtn = itemView.findViewById(R.id.buttonIncrease);
-            decreaseBtn = itemView.findViewById(R.id.buttonDecrease);
+//            increaseBtn = itemView.findViewById(R.id.buttonIncrease);
+//            decreaseBtn = itemView.findViewById(R.id.buttonDecrease);
             removeBtn = itemView.findViewById(R.id.buttonRemove);
         }
     }

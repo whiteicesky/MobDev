@@ -58,9 +58,10 @@ public class ProductDetailActivity extends AppCompatActivity {
                 Toast.makeText(this, "Выберите размер", Toast.LENGTH_SHORT).show();
             } else {
                 RadioButton selectedSize = findViewById(selectedId);
+                String size = selectedSize.getText().toString();
                 Product product = new Product(name, brand, category, price, description, imageUrl);
-                CartManager.getInstance().addToCart(product); // ЭТО ОБЯЗАТЕЛЬНО
-                Toast.makeText(this, "Добавлено в корзину: " + name + ", размер " + selectedSize.getText(), Toast.LENGTH_SHORT).show();
+                CartManager.getInstance().addToCart(product, size);
+                Toast.makeText(this, "Добавлено в корзину: " + name + ", размер " + size, Toast.LENGTH_SHORT).show();
             }
         });
 

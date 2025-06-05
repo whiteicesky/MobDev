@@ -13,9 +13,11 @@ import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
     private final List<CategoryWithProducts> categories;
+    private final ProductHorizontalAdapter.OnProductClickListener productClickListener;
 
-    public CategoryAdapter(List<CategoryWithProducts> categories) {
+    public CategoryAdapter(List<CategoryWithProducts> categories, ProductHorizontalAdapter.OnProductClickListener listener) {
         this.categories = categories;
+        this.productClickListener = listener;
     }
 
     @NonNull
@@ -30,7 +32,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         CategoryWithProducts category = categories.get(position);
         holder.categoryTitle.setText(category.getTitle());
 
-        ProductHorizontalAdapter productAdapter = new ProductHorizontalAdapter(category.getProducts());
+        ProductHorizontalAdapter productAdapter = new ProductHorizontalAdapter(category.getProducts(), productClickListener);
         holder.productsRecycler.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.HORIZONTAL, false));
         holder.productsRecycler.setAdapter(productAdapter);
     }
@@ -51,4 +53,3 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         }
     }
 }
-

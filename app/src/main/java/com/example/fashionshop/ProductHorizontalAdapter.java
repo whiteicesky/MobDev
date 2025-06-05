@@ -15,9 +15,11 @@ import java.util.List;
 
 public class ProductHorizontalAdapter extends RecyclerView.Adapter<ProductHorizontalAdapter.ProductViewHolder> {
     private final List<Product> productList;
+    private final OnProductClickListener listener;
 
-    public ProductHorizontalAdapter(List<Product> productList) {
+    public ProductHorizontalAdapter(List<Product> productList, OnProductClickListener listener) {
         this.productList = productList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -33,6 +35,8 @@ public class ProductHorizontalAdapter extends RecyclerView.Adapter<ProductHorizo
         holder.name.setText(product.getName());
         holder.price.setText(product.getPrice() + " ₽");
         Glide.with(holder.itemView.getContext()).load(product.getImageUrl()).into(holder.imageView);
+
+        holder.itemView.setOnClickListener(v -> listener.onProductClick(product));
     }
 
     @Override
@@ -51,5 +55,8 @@ public class ProductHorizontalAdapter extends RecyclerView.Adapter<ProductHorizo
             imageView = itemView.findViewById(R.id.imageViewProduct);
         }
     }
-}
 
+    public interface OnProductClickListener {
+        void onProductClick(Product product);
+    }
+}
